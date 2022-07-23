@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>Bootstrap demo</title>
+    <title>Libra weather app</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
@@ -14,27 +14,30 @@
 <div class="container">
     <form class="search-form" id="search-form">
         <div class="input-group mt-5 mx-auto mb-5" style="width: 75%;" >
-            <input type="search" id="search-input" class="form-control" placeholder="Enter your city..." autocomplete="off">
+            <input type="search" id="city-input" class="form-control" placeholder="Enter your city..." autocomplete="off">
             <button class="btn btn-outline-success" type="submit" value="search" >Search</button>
             <button class="btn btn-outline-info" type="button" id="location-button">Current city</button>
         </div>
     </form>
 
-    <div class="card text-center mx-auto" style="width: 60%;">
+    <div class="card text-center mx-auto" style="width: 40%;">
         <div class="card-body mb-3">
-            <h1 class="card-title mainCity" id="city">Kyiv, Ukraine</h1>
-            <p class="card-text text-muted text-uppercase" id="today"></p>
+            <h1 class="card-title mainCity" id="city"></h1>
+            <p class="card-text text-muted text-uppercase" id="date"></p>
             
             <span>
-            <span class="card-text fs-2 fw-bold mainTemp" id="current-temperature">19</span>
-                <a href="#" class="celsius active text-decoration-none text-muted fw-bold fs-6 align-top" id="celcius">°C</a> 
+            <span class="card-text fs-1 fw-bold mainTemp" id="temperature"></span>
+                <a href="#" class="celsius active text-decoration-none text-muted fs-6 align-top" id="celcius-link">°C</a> 
                 <span class="vertical-line fw-light fs-6 align-top">|</span>
-                <a href="#" class="farhenheit text-decoration-none text-muted fs-6 align-top" id="fahrenheit">°F</a> 
+                <a href="#" class="farhenheit text-decoration-none text-muted fs-6 align-top" id="fahrenheit-link">°F</a> 
             </span>
 
-            <!-- <p class="card-text text-muted fst-italic">Feels like 27°C</p> -->
-            <p class="card-text mb-1"> <span>Humidity:</span> <span id="humidity">80</span>%</p>
-            <p class="card-text"> <span>Wind:</span> <span id="wind">10</span> km/h</p>
+            <div>
+                <img src="" alt="" id="icon" class="float-left">
+            </div>
+            <p class="card-text text-muted fst-italic" id="description"></p>
+            <p class="card-text mb-1"> <span>Humidity:</span> <span id="humidity"></span>%</p>
+            <p class="card-text"> <span>Wind:</span> <span id="wind"></span> km/h</p>
         </div>
     </div>
 
