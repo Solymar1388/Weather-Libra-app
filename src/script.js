@@ -1,14 +1,13 @@
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
+    if (hours < 10) {
+      hours = `0${hours}`;
+    }
   let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
   let days = [
     'Sunday',
     'Monday',
@@ -51,7 +50,7 @@ function formatDay(timestamp) {
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector('#forecast');
-
+  
   let forecastHTML = `<div class="row">`;
 
   forecast.forEach(function (forecastDay, index) {
@@ -148,14 +147,9 @@ function showFahrenheitTemperature(event) {
     );
 
     for (i = 0; i < 7; i++) {
-    forecastMin[i].innerHTML = `${Math.round(
-      (forecastTemp[i].temp.min * 9) / 5 + 32
-    )}°`;
-    forecastMax[i].innerHTML = `${Math.round(
-      (forecastTemp[i].temp.max * 9) / 5 + 32
-    )}°`;
+    forecastMin[i].innerHTML = `${Math.round((forecastTemp[i].temp.min * 9) / 5 + 32)}°`;
+    forecastMax[i].innerHTML = `${Math.round((forecastTemp[i].temp.max * 9) / 5 + 32)}°`;
     }
-    
 }
 
 function showCelciusTemperature(event) {
@@ -164,14 +158,8 @@ function showCelciusTemperature(event) {
   fahrenheitLink.classList.remove('active');
   let temperatureElement = document.querySelector('#temperature');
   temperatureElement.innerHTML = Math.round(celciusTemperature);
-  let forecastMin = document.getElementsByClassName(
-    'weather-forecast-temperature-min'
-  );
-  let forecastMax = document.getElementsByClassName(
-    'weather-forecast-temperature-max'
-  );
-
-  
+  let forecastMin = document.getElementsByClassName('weather-forecast-temperature-min');
+  let forecastMax = document.getElementsByClassName('weather-forecast-temperature-max');
 
   for (i = 0; i < 7; i++) {
     forecastMin[i].innerHTML = `${Math.round(forecastTemp[i].temp.min)}°`;
@@ -193,7 +181,6 @@ function getCurrentLocation(event) {
 
 let celciusTemperature = null;
 let forecastTemp = [];
-
 
 let form = document.querySelector('#search-form');
 form.addEventListener('submit', handleSubmit);
