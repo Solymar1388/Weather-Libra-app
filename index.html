@@ -21,24 +21,24 @@
 <body>
 
 <div class="container">
-    <div class="card mx-auto pb-4 mt-4 main-block">
-        <form class="search-form mx-auto mb-3 mt-4" id="search-form">
-                <div class="input-group" style="width: 100%" >
-                    <div class="input-serach-field mx-2">
+    <div class="card mx-auto pb-4 mt-4 main-block ">
+        <form class="search-form mx-auto mb-3 mt-4 d-flex " id="search-form">
+                <div class="input-group justify-content-center flex-wrap" style="width: 100%" >
+                    <div class="input-serach-field mx-2 mt-2">
                         <input type="search" 
                             id="city-input" 
-                            class="form-control" 
+                            class="form-control " 
                             placeholder="Type a city..." 
                             autocomplete="off">
                     </div>
-                    <div class="button-search ">
+                    <div class="button-search mt-2">
                         <button class="btn border-info btn-warning mx-2 text-center" 
                             type="submit" 
                             value="search">
                             <i class="bi bi-search"></i> Search
                         </button>
                     </div>
-                    <div class="button-current-location ">
+                    <div class="button-current-location mt-2">
                         <button class="btn border-warning btn-info mx-2 text-center" 
                             type="button" 
                             id="location-button">Current 
@@ -48,7 +48,7 @@
                 </div>
         </form>
 
-    <div class="card text-center mx-auto info-block" style="width: 40%;">
+    <div class="card text-center mx-auto info-block" style="width: 60%;">
         <div class="card-body mb-3">
             <h1 class="card-title mainCity"> <span id="city"></span>, <span id="country"></span></h1>
             <p class="card-text text-muted text-uppercase" id="date"></p>
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-        <div class="card text-center mx-auto mt-3  weather-forecast p-4 forecast-block" style="width: 75%" id="forecast">
+        <div class="card text-center mx-auto mt-3 weather-forecast p-4 forecast-block" style="width: 75%" id="forecast">
         </div>
     </div>
 </div>

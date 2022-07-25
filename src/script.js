@@ -51,15 +51,15 @@ function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector('#forecast');
   
-  let forecastHTML = `<div class="row">`;
+  let forecastHTML = `<div class="row d-flex justify-content-center">`;
 
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
         `
-            <div class="col-2 shadow p-2">
-                <div class="weather-forecast-date fw-bolder">
+            <div class="col shadow p-2 m-1 flex-wrap weather-card">
+                <div class="weather-forecast-date fw-bolder ">
                 ${formatDay(forecastDay.dt)}
                 </div>
                     <img src="http://openweathermap.org/img/wn/${
