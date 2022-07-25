@@ -5,25 +5,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>Libra weather app</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link rel="stylesheet" href="/src/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
+    <title>Libra weather app</title>
 </head>
 
 <body>
 <div class="container">
     <div class="card mx-auto pb-5 mt-4 main-block">
         <form class="search-form mx-auto mb-3 mt-4" id="search-form">
-                <div class="input-group" style="width: 100%;" >
-                    <div class="input-serach-field mx-1">
+                <div class="input-group" style="width: 100%" >
+                    <div class="input-serach-field mx-2">
                         <input type="search" id="city-input" class="form-control" placeholder="Type a city..." autocomplete="off">
                     </div>
-                    <div class="button-search mx-1">
-                        <button class="btn " type="submit" value="search">🔍 Search</button>
+                    <div class="button-search ">
+                        <button class="btn border-info btn-warning mx-2 text-center" type="submit" value="search">🔍Search</button>
                     </div>
-                    <div class="button-current-location mx-1">
-                        <button class="btn" type="button" id="location-button">📍 Current location</button>
+                    <div class="button-current-location ">
+                        <button class="btn border-warning btn-info mx-2 text-center rounded-circle" style="width: 42px; height: 42px" type="button" id="location-button">📍</button>
                     </div>
                 </div>
         </form>
@@ -74,9 +79,9 @@
 </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> -->
 
         <script src="src/script.js"></script>
 

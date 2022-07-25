@@ -3,6 +3,13 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-weight: 900;
+    letter-spacing: 3px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .main-block {
@@ -15,9 +22,19 @@ body {
 .info-block,
 .forecast-block {
     background: rgba(255, 255, 255, 0.4);
-    box-shadow: 0px 2px 2px 1px rgb(0 0 0 / 10%);
+    box-shadow: 0px 3px 3px 2px rgb(0 0 0 / 10%);
 }
 
 .info-block {
     border-radius: 15px;
+}
+
+.btn-warning {
+    --bs-btn-bg:#f7eac2;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.btn-info {
+    --bs-btn-bg: #95e3ef;
+    font-family: 'Montserrat', sans-serif;
 }
