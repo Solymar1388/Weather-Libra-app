@@ -12,6 +12,10 @@ h1 {
     font-family: 'Montserrat', sans-serif;
 }
 
+.mainTemp {
+    font-size: 56px;
+}
+
 .main-block {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 25px;

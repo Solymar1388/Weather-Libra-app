@@ -19,8 +19,25 @@ function formatDate(timestamp) {
     'Saturday',
   ];
   let day = days[date.getDay()];
+  let months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  let currentMonth = months[date.getMonth()];
+  let currentYear = date.getFullYear();
+  let currentDate = date.getDate();
 
-  return `${day}, ${hours}:${minutes}`;
+  return `${day}, ${currentDate} ${currentMonth} ${currentYear}, ${hours}:${minutes}`;
 }
 
 function formatDay(timestamp) {
@@ -33,7 +50,6 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-
   let forecastElement = document.querySelector('#forecast');
 
   let forecastHTML = `<div class="row">`;
@@ -44,7 +60,7 @@ function displayForecast(response) {
         forecastHTML +
         `
             <div class="col-2">
-                <div class="weather-forecast-date">
+                <div class="weather-forecast-date fw-bold">
                 ${formatDay(forecastDay.dt)}
                 </div>
                     <img src="http://openweathermap.org/img/wn/${
@@ -67,6 +83,7 @@ function displayForecast(response) {
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+  forecastTemp = forecast;
 }
 
 function getForecast(coordinates) {
@@ -78,6 +95,7 @@ function getForecast(coordinates) {
 function displayTemperature(response) {
   let temperatureElement = document.querySelector('#temperature');
   let cityElement = document.querySelector('#city');
+  let countryElement = document.querySelector('#country');
   let descriptionElement = document.querySelector('#description');
   let humidityElement = document.querySelector('#humidity');
   let windElement = document.querySelector('#wind');
@@ -88,6 +106,7 @@ function displayTemperature(response) {
 
   temperatureElement.innerHTML = Math.round(response.data.main.temp);
   cityElement.innerHTML = response.data.name;
+  countryElement.innerHTML = response.data.sys.country;
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
@@ -120,6 +139,22 @@ function showFahrenheitTemperature(event) {
   fahrenheitLink.classList.add('active');
   let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+    let forecastMax = document.getElementsByClassName(
+      'weather-forecast-temperature-max'
+    );
+    let forecastMin = document.getElementsByClassName(
+      'weather-forecast-temperature-min'
+    );
+
+    for (i = 0; i < 7; i++) {
+    forecastMin[i].innerHTML = `${Math.round(
+      (forecastTemp[i].temp.min * 9) / 5 + 32
+    )}°`;
+    forecastMax[i].innerHTML = `${Math.round(
+      (forecastTemp[i].temp.max * 9) / 5 + 32
+    )}°`;
+    }
+    
 }
 
 function showCelciusTemperature(event) {
@@ -128,6 +163,19 @@ function showCelciusTemperature(event) {
   fahrenheitLink.classList.remove('active');
   let temperatureElement = document.querySelector('#temperature');
   temperatureElement.innerHTML = Math.round(celciusTemperature);
+  let forecastMin = document.getElementsByClassName(
+    'weather-forecast-temperature-min'
+  );
+  let forecastMax = document.getElementsByClassName(
+    'weather-forecast-temperature-max'
+  );
+
+  
+
+  for (i = 0; i < 7; i++) {
+    forecastMin[i].innerHTML = `${Math.round(forecastTemp[i].temp.min)}°`;
+    forecastMax[i].innerHTML = `${Math.round(forecastTemp[i].temp.max)}°`;
+  }
 }
 
 function searchLocation(position) {
@@ -135,7 +183,6 @@ function searchLocation(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
 
   axios.get(apiUrl).then(displayTemperature);
-  console.log(searchLocation);
 }
 
 function getCurrentLocation(event) {
@@ -144,6 +191,8 @@ function getCurrentLocation(event) {
 }
 
 let celciusTemperature = null;
+let forecastTemp = [];
+
 
 let form = document.querySelector('#search-form');
 form.addEventListener('submit', handleSubmit);
