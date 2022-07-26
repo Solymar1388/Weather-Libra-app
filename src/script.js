@@ -47,6 +47,31 @@ function formatDay(timestamp) {
   return days[day];
 }
 
+function showWeatherIcon(iconNumber) {
+  let weatherIconDictionary = {
+    '01d': '01d.svg',
+    '01n': '01n.svg',
+    '02d': '02d.svg',
+    '02n': '02n.svg',
+    '03d': '03d.svg',
+    '03n': '03n.svg',
+    '04d': '04d.svg',
+    '04n': '04n.svg',
+    '09d': '09d.svg',
+    '09n': '09n.svg',
+    '10d': '10d.svg',
+    '10n': '10n.svg',
+    '11d': '11d.svg',
+    '11n': '11n.svg',
+    '13d': '13d.svg',
+    '13n': '13n.png',
+    '50d': '50d.svg',
+    '50n': '50n.png',
+  };
+  let weatherIcon = weatherIconDictionary[iconNumber];
+  return weatherIcon;
+}
+
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector('#forecast');
@@ -62,12 +87,9 @@ function displayForecast(response) {
                 <div class="weather-forecast-date fw-bolder ">
                 ${formatDay(forecastDay.dt)}
                 </div>
-                    <img src="http://openweathermap.org/img/wn/${
-                      forecastDay.weather[0].icon
-                    }@2x.png" 
-                        alt=""
-                        width="52"
-                        >
+                  <img src="img/${showWeatherIcon(
+                    forecastDay.weather[0].icon
+                  )}" alt="" width="64">
                 <div class="weather-forecast-temperatures">
                     <span class="weather-forecast-temperature-max fw-bold">${Math.round(
                       forecastDay.temp.max
@@ -92,6 +114,8 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 
+
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector('#temperature');
   let cityElement = document.querySelector('#city');
@@ -111,10 +135,11 @@ function displayTemperature(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
-  iconElement.setAttribute(
-    'src',
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
+  // iconElement.setAttribute(
+  //   'src',
+  //   `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  // );
+  iconElement.setAttribute('src', `img/${response.data.weather[0].icon}.svg`);
   iconElement.setAttribute('alt', response.data.weather[0].description);
 
   getForecast(response.data.coord);
