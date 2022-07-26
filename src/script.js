@@ -1,13 +1,13 @@
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
-    if (hours < 10) {
-      hours = `0${hours}`;
-    }
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
   let minutes = date.getMinutes();
-    if (minutes < 10) {
-      minutes = `0${minutes}`;
-    }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let days = [
     'Sunday',
     'Monday',
@@ -75,33 +75,31 @@ function showWeatherIcon(iconNumber) {
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector('#forecast');
-  
   let forecastHTML = `<div class="row d-flex justify-content-center">`;
-
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `
-            <div class="col shadow p-2 m-1 flex-wrap weather-card">
-                <div class="weather-forecast-date fw-bolder ">
-                ${formatDay(forecastDay.dt)}
-                </div>
-                  <img src="img/${showWeatherIcon(
-                    forecastDay.weather[0].icon
-                  )}" alt="" width="64">
-                <div class="weather-forecast-temperatures">
-                    <span class="weather-forecast-temperature-max fw-bold">${Math.round(
-                      forecastDay.temp.max
-                    )}°</span>
-                    <span class="weather-forecast-temperature-min text-muted">${Math.round(
-                      forecastDay.temp.min
-                    )}°</span>     
-                </div>
-            </div>
-        `;
-    }
-  });
+    forecast.forEach(function (forecastDay, index) {
+      if (index < 6) {
+        forecastHTML =
+          forecastHTML +
+          `
+              <div class="col shadow p-2 m-1 flex-wrap weather-card">
+                  <div class="weather-forecast-date fw-bolder ">
+                  ${formatDay(forecastDay.dt)}
+                  </div>
+                    <img src="img/${showWeatherIcon(
+                      forecastDay.weather[0].icon
+                    )}" alt="" width="64">
+                  <div class="weather-forecast-temperatures">
+                      <span class="weather-forecast-temperature-max fw-bold">${Math.round(
+                        forecastDay.temp.max
+                      )}°</span>
+                      <span class="weather-forecast-temperature-min text-muted">${Math.round(
+                        forecastDay.temp.min
+                      )}°</span>     
+                  </div>
+              </div>
+          `;
+      }
+    });
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -113,8 +111,6 @@ function getForecast(coordinates) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
-
-
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector('#temperature');
@@ -135,10 +131,6 @@ function displayTemperature(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
-  // iconElement.setAttribute(
-  //   'src',
-  //   `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  // );
   iconElement.setAttribute('src', `img/${response.data.weather[0].icon}.svg`);
   iconElement.setAttribute('alt', response.data.weather[0].description);
 
@@ -164,17 +156,21 @@ function showFahrenheitTemperature(event) {
   fahrenheitLink.classList.add('active');
   let fahrenheitTemperature = (celciusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-    let forecastMax = document.getElementsByClassName(
-      'weather-forecast-temperature-max'
-    );
-    let forecastMin = document.getElementsByClassName(
-      'weather-forecast-temperature-min'
-    );
+  let forecastMax = document.getElementsByClassName(
+    'weather-forecast-temperature-max'
+  );
+  let forecastMin = document.getElementsByClassName(
+    'weather-forecast-temperature-min'
+  );
 
-    for (i = 0; i < 7; i++) {
-    forecastMin[i].innerHTML = `${Math.round((forecastTemp[i].temp.min * 9) / 5 + 32)}°`;
-    forecastMax[i].innerHTML = `${Math.round((forecastTemp[i].temp.max * 9) / 5 + 32)}°`;
-    }
+  for (i = 0; i < 7; i++) {
+    forecastMin[i].innerHTML = `${Math.round(
+      (forecastTemp[i].temp.min * 9) / 5 + 32
+    )}°`;
+    forecastMax[i].innerHTML = `${Math.round(
+      (forecastTemp[i].temp.max * 9) / 5 + 32
+    )}°`;
+  }
 }
 
 function showCelciusTemperature(event) {
@@ -183,8 +179,12 @@ function showCelciusTemperature(event) {
   fahrenheitLink.classList.remove('active');
   let temperatureElement = document.querySelector('#temperature');
   temperatureElement.innerHTML = Math.round(celciusTemperature);
-  let forecastMin = document.getElementsByClassName('weather-forecast-temperature-min');
-  let forecastMax = document.getElementsByClassName('weather-forecast-temperature-max');
+  let forecastMin = document.getElementsByClassName(
+    'weather-forecast-temperature-min'
+  );
+  let forecastMax = document.getElementsByClassName(
+    'weather-forecast-temperature-max'
+  );
 
   for (i = 0; i < 7; i++) {
     forecastMin[i].innerHTML = `${Math.round(forecastTemp[i].temp.min)}°`;
